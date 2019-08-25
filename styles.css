@@ -1,3 +1,9 @@
+html {
+  /* set up some reusable colours */
+  --lilac: #ccf;
+  --lightgrey: #999;
+}
+
 body {
   background-color: #eee;
   margin: 0;
@@ -8,7 +14,7 @@ body {
 }
 header {
  text-align: center;
- background: #ccf;
+ background: var(--lilac);
 }
 header h1 {
   margin: 0;
@@ -20,11 +26,13 @@ nav {
 nav a {
   display: block;
   line-height: 2em;
-  width: 10%;
+  min-width: 5em;
+  padding: 0 4px;
   background: #fcc;
   text-decoration: none;
   color: #333;
   text-align: center;
+  transition: all .5s;
 }
 nav a:hover {
   color: #fff;
@@ -32,17 +40,16 @@ nav a:hover {
 }
 main {
   display: flex;
+  flex-direction: column;
 }
 main section {
   box-sizing: border-box;
-  /* two coloumns: */
-  width: 50%;
-  /* three coloumns (uncomment the line below): */
-  /* width: 33.33%; */
+  /* mobile version: */
+  width: 100%;
   min-height: 20em;
   padding: 1em 10px;
   background: #cfc;
-  border: 1px solid #999;
+  border: 1px solid var(--lightgrey);
   /* required to position the "diamond" below */
   position: relative;
 }
@@ -51,7 +58,7 @@ footer {
   padding: .25em 10px;
   text-align: right;
   line-height: 2em;
-  background: #ccf;
+  background: var(--lilac);
 }
 
 /* --- ABSOLUTE POSITIONING --- */
@@ -60,8 +67,24 @@ footer {
   height: 20px;
   width: 20px;
   transform: rotate(45deg);
-  background: #999;
+  background: var(--lightgrey);
   position: absolute;
-  top: 50%;
-  left: -10px;
+  top: -10px;
+  left: calc(50% - 10px);
+}
+
+@media screen and (min-width: 600px) {
+  main {
+    flex-direction: row;
+  }
+  main section {
+    /* two coloumns: */
+    width: 50%;
+    /* three coloumns, uncomment below: */
+    /* width: 33.33%; */
+  }
+  .diamond {
+    top: calc(50% - 10px);
+    left: -10px
+  }
 }
